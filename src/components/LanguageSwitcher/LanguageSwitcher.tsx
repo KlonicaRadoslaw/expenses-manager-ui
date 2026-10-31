@@ -7,6 +7,7 @@ export function LanguageSwitcher() {
   return (
     <ToggleButtonGroup
       size="small"
+      exclusive
       value={i18n.resolvedLanguage}
       onChange={(_, lng: string) => {
         void i18n.changeLanguage(lng);

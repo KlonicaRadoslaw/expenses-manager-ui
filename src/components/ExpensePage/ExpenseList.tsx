@@ -13,12 +13,23 @@ export default function ExpenseList({ expenses }: ExpenseListProps) {
   }
 
   return (
-    <ul>
-      {expenses.map((expense) => (
-        <li key={expense.id}>
-          {expense.title} ({expense.category}): {expense.amount.toFixed(2)}
-        </li>
-      ))}
-    </ul>
+    <table style={{ borderCollapse: "collapse", width: "50%" }}>
+      <thead>
+        <tr>
+          <th style={{ textAlign: "left" }}>{t("form.title")}</th>
+          <th style={{ textAlign: "left" }}>{t("form.category")}</th>
+          <th style={{ textAlign: "right" }}>{t("form.amount")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {expenses.map((expense) => (
+          <tr key={expense.id}>
+            <td>{expense.title}</td>
+            <td>{expense.category}</td>
+            <td style={{ textAlign: "right" }}>{expense.amount.toFixed(2)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

@@ -16,7 +16,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
     formState: { errors },
   } = useForm<ExpenseFormValues>({
     resolver: zodResolver(expenseSchema),
-    defaultValues: { title: "", category: "" },
+    defaultValues: { title: "", amount: 0, category: "" },
   });
 
   const onSubmit = (values: ExpenseFormValues) => {
@@ -34,7 +34,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
 
       <div>
         <label>{t("form.amount")}</label>
-        <input {...register("amount")} />
+        <input type="number" {...register("amount", { valueAsNumber: true })} />
         {errors.amount && <p>{t(errors.amount.message as string)}</p>}
       </div>
 

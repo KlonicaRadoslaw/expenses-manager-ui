@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "titleRequired": "Title is required",
+    "titleMin": "Title must contain more than 2 characters",
+    "amountRequired": "Amount is required",
+    "amountPositive": "Amount must be greater than zero",
+    "categoryRequired": "Category is required"
+  }
+}

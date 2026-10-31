@@ -7,6 +7,15 @@ interface ExpenseFormProps {
   onAdd: (values: ExpenseFormValues) => void;
 }
 
+const fieldStyle = { marginBottom: 12 };
+const labelStyle = { display: "block", marginBottom: 4 };
+const inputStyle = {
+  width: "100%",
+  padding: 6,
+  boxSizing: "border-box" as const,
+};
+const errorStyle = { color: "crimson", fontSize: 13, margin: "4px 0 0" };
+
 export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
   const { t } = useTranslation();
   const {
@@ -16,7 +25,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
     formState: { errors },
   } = useForm<ExpenseFormValues>({
     resolver: zodResolver(expenseSchema),
-    defaultValues: { title: "", amount: 0, category: "" },
+    defaultValues: { title: "", category: "" },
   });
 
   const onSubmit = (values: ExpenseFormValues) => {
@@ -25,23 +34,45 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>{t("form.title")}</label>
-        <input {...register("title")} />
-        {errors.title && <p>{t(errors.title.message as string)}</p>}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      style={{ maxWidth: 400 }}
+    >
+      <div style={fieldStyle}>
+        <label htmlFor="title" style={labelStyle}>
+          {t("form.title")}
+        </label>
+        <input id="title" style={inputStyle} {...register("title")} />
+        {errors.title && (
+          <p style={errorStyle}>{t(errors.title.message as string)}</p>
+        )}
       </div>
 
-      <div>
-        <label>{t("form.amount")}</label>
-        <input type="number" {...register("amount", { valueAsNumber: true })} />
-        {errors.amount && <p>{t(errors.amount.message as string)}</p>}
+      <div style={fieldStyle}>
+        <label htmlFor="amount" style={labelStyle}>
+          {t("form.amount")}
+        </label>
+        <input
+          id="amount"
+          type="number"
+          step="any"
+          style={inputStyle}
+          {...register("amount", { valueAsNumber: true })}
+        />
+        {errors.amount && (
+          <p style={errorStyle}>{t(errors.amount.message as string)}</p>
+        )}
       </div>
 
-      <div>
-        <label>{t("form.category")}</label>
-        <input {...register("category")} />
-        {errors.category && <p>{t(errors.category.message as string)}</p>}
+      <div style={fieldStyle}>
+        <label htmlFor="category" style={labelStyle}>
+          {t("form.category")}
+        </label>
+        <input id="category" style={inputStyle} {...register("category")} />
+        {errors.category && (
+          <p style={errorStyle}>{t(errors.category.message as string)}</p>
+        )}
       </div>
 
       <button type="submit">{t("form.add")}</button>

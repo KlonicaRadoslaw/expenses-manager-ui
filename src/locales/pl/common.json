@@ -1,0 +1,19 @@
+{
+  "header": "Menedżer wydatków",
+  "form": {
+    "title": "Tytuł",
+    "amount": "Kwota",
+    "category": "Kategoria",
+    "add": "Dodaj wydatek"
+  },
+  "list": {
+    "empty": "Brak wydatków. Dodaj pierwszy!"
+  },
+  "errors": {
+    "titleRequired": "Tytuł jest wymagany",
+    "titleMin": "Tytuł musi mieć przynajmniej 2 znaki",
+    "amountRequired": "Kwota jest wymagana",
+    "amountPositive": "Kwota musi być większa od zera",
+    "categoryRequired": "Kategoria jest wymagana"
+  }
+}

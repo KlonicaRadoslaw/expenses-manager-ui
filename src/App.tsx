@@ -1,12 +1,7 @@
-import { Button } from "@mui/material";
+import ExpensesPage from "@/pages/ExpensesPage";
 
 function App() {
-  return (
-    <>
-      <h1>Expense Manager</h1>
-      <Button variant="contained">Expense Manager</Button>
-    </>
-  );
+  return <ExpensesPage />;
 }
 
 export default App;

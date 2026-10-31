@@ -1,0 +1,19 @@
+{
+  "header": "Expense Manager",
+  "form": {
+    "title": "Title",
+    "amount": "Amount",
+    "category": "Category",
+    "add": "Add expense"
+  },
+  "list": {
+    "empty": "No expenses yet. Add the first one!"
+  },
+  "errors": {
+    "titleRequired": "Title is required",
+    "titleMin": "Title must contain at least 2 characters",
+    "amountRequired": "Amount is required",
+    "amountPositive": "Amount must be greater than zero",
+    "categoryRequired": "Category is required"
+  }
+}

@@ -4,7 +4,8 @@
     "title": "Tytuł",
     "amount": "Kwota",
     "category": "Kategoria",
-    "add": "Dodaj wydatek"
+    "add": "Dodaj wydatek",
+    "sum": "Suma"
   },
   "list": {
     "empty": "Brak wydatków. Dodaj pierwszy!"

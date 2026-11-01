@@ -13,6 +13,15 @@ export function LanguageSwitcher() {
         void i18n.changeLanguage(lng);
         localStorage.setItem("lng", lng);
       }}
+      sx={{
+        "& .MuiToggleButton-root": {
+          color: "primary.contrastText",
+          borderColor: "primary.contrastText",
+        },
+        "& .Mui-selected": {
+          backgroundColor: "rgba(255, 255, 255, 0.25) !important",
+        },
+      }}
     >
       <ToggleButton value="pl">PL</ToggleButton>
       <ToggleButton value="en">EN</ToggleButton>

@@ -24,10 +24,10 @@ export default function ExpenseList({ expenses }: ExpenseListProps) {
   }
 
   return (
-    <TableContainer sx={{ width: "50%" }} component={Paper} variant="outlined">
+    <TableContainer component={Paper} variant="outlined">
       <Table size="small">
         <TableHead>
-          <TableRow sx={{ backgroundColor: "action.hover" }}>
+          <TableRow>
             <TableCell>{t("form.title")}</TableCell>
             <TableCell>{t("form.category")}</TableCell>
             <TableCell>{t("form.amount")}</TableCell>
@@ -49,7 +49,6 @@ export default function ExpenseList({ expenses }: ExpenseListProps) {
             sx={{
               "& td": {
                 borderTop: "2px solid",
-                borderTopColor: "text.primary",
                 borderBottom: "none",
                 fontWeight: "bold",
               },

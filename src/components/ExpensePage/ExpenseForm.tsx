@@ -26,10 +26,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      style={{ maxWidth: "30%", marginBottom: "20px" }}
-    >
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2}>
         <Controller
           name="title"
@@ -38,7 +35,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
             <TextField
               {...field}
               label={t("form.title")}
-              error={!!errors.title}
+              error={Boolean(errors.title)}
               helperText={errors.title?.message ? t(errors.title.message) : " "}
             />
           )}
@@ -51,7 +48,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
               {...field}
               label={t("form.amount")}
               type="number"
-              error={!!errors.amount}
+              error={Boolean(errors.amount)}
               helperText={
                 errors.amount?.message ? t(errors.amount.message) : " "
               }
@@ -71,7 +68,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
             <TextField
               {...field}
               label={t("form.category")}
-              error={!!errors.category}
+              error={Boolean(errors.category)}
               helperText={
                 errors.category?.message ? t(errors.category.message) : " "
               }

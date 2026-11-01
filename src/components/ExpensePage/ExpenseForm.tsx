@@ -1,25 +1,17 @@
 import { expenseSchema, type ExpenseFormValues } from "@/utils/expenseSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Button, Stack, TextField } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 interface ExpenseFormProps {
   onAdd: (values: ExpenseFormValues) => void;
 }
 
-const fieldStyle = { marginBottom: 12 };
-const labelStyle = { display: "block", marginBottom: 4 };
-const inputStyle = {
-  width: "100%",
-  padding: 6,
-  boxSizing: "border-box" as const,
-};
-const errorStyle = { color: "crimson", fontSize: 13, margin: "4px 0 0" };
-
 export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
   const { t } = useTranslation();
   const {
-    register,
+    control,
     handleSubmit,
     reset,
     formState: { errors },
@@ -36,46 +28,60 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      noValidate
-      style={{ maxWidth: 400 }}
+      style={{ maxWidth: "30%", marginBottom: "20px" }}
     >
-      <div style={fieldStyle}>
-        <label htmlFor="title" style={labelStyle}>
-          {t("form.title")}
-        </label>
-        <input id="title" style={inputStyle} {...register("title")} />
-        {errors.title && (
-          <p style={errorStyle}>{t(errors.title.message as string)}</p>
-        )}
-      </div>
-
-      <div style={fieldStyle}>
-        <label htmlFor="amount" style={labelStyle}>
-          {t("form.amount")}
-        </label>
-        <input
-          id="amount"
-          type="number"
-          step="any"
-          style={inputStyle}
-          {...register("amount", { valueAsNumber: true })}
+      <Stack spacing={2}>
+        <Controller
+          name="title"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label={t("form.title")}
+              error={!!errors.title}
+              helperText={errors.title?.message ? t(errors.title.message) : " "}
+            />
+          )}
         />
-        {errors.amount && (
-          <p style={errorStyle}>{t(errors.amount.message as string)}</p>
-        )}
-      </div>
-
-      <div style={fieldStyle}>
-        <label htmlFor="category" style={labelStyle}>
-          {t("form.category")}
-        </label>
-        <input id="category" style={inputStyle} {...register("category")} />
-        {errors.category && (
-          <p style={errorStyle}>{t(errors.category.message as string)}</p>
-        )}
-      </div>
-
-      <button type="submit">{t("form.add")}</button>
+        <Controller
+          name="amount"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label={t("form.amount")}
+              type="number"
+              error={!!errors.amount}
+              helperText={
+                errors.amount?.message ? t(errors.amount.message) : " "
+              }
+              value={field.value ?? ""}
+              onChange={(e) =>
+                field.onChange(
+                  e.target.value === "" ? undefined : Number(e.target.value),
+                )
+              }
+            />
+          )}
+        />
+        <Controller
+          name="category"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label={t("form.category")}
+              error={!!errors.category}
+              helperText={
+                errors.category?.message ? t(errors.category.message) : " "
+              }
+            />
+          )}
+        />
+        <Button type="submit" variant="contained">
+          {t("form.add")}
+        </Button>
+      </Stack>
     </form>
   );
 }

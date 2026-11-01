@@ -4,7 +4,8 @@
     "title": "Title",
     "amount": "Amount",
     "category": "Category",
-    "add": "Add expense"
+    "add": "Add expense",
+    "sum": "Sum"
   },
   "list": {
     "empty": "No expenses yet. Add the first one!"

@@ -1,23 +1,18 @@
-import ExpensesPage from "@/pages/ExpensesPage";
-import { AppBar, Toolbar, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Layout from "@/components/Common/Layout";
 
 function App() {
-  const { t } = useTranslation();
-
   return (
-    <>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            {t("header")}
-          </Typography>
-          <LanguageSwitcher />
-        </Toolbar>
-      </AppBar>
-      <ExpensesPage />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="expenses" element={<ExpensesPage />} />
+          <Route path="summary" element={<SummaryPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

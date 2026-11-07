@@ -1,15 +1,24 @@
+import { expensesService } from "@/api/services/expenseService";
+import ErrorState from "@/components/Error/ErrorState";
+import EmptyExpenses from "@/components/ExpensePage/ExpenseEmpty";
 import ExpenseForm from "@/components/ExpensePage/ExpenseForm";
-import ExpenseList from "@/components/ExpensePage/ExpenseList";
+import LoadingState from "@/components/Loading/LoadingState";
+import { useExpenses } from "@/hooks/useExpenses";
 import type { ExpenseFormValues } from "@/utils/expenseSchema";
-import type { Expense } from "@/utils/types";
 import { Box, Container } from "@mui/material";
-import { useState } from "react";
 
 export default function ExpensesPage() {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const { expenses, isLoading, error, refresh } = useExpenses();
 
   const handleAdd = (values: ExpenseFormValues) => {
-    setExpenses((prev) => [...prev, { id: crypto.randomUUID(), ...values }]);
+    expensesService.create(values);
+    refresh();
+  };
+
+  const renderContent = () => {
+    if (isLoading) return <LoadingState />;
+    if (error) return <ErrorState message={error} onRetry={refresh} />;
+    if (expenses.length === 0) return <EmptyExpenses />;
   };
 
   return (
@@ -26,9 +35,7 @@ export default function ExpensesPage() {
           <ExpenseForm onAdd={handleAdd} />
         </Box>
 
-        <Box sx={{ flexGrow: 1, width: "100%" }}>
-          <ExpenseList expenses={expenses} />
-        </Box>
+        <Box sx={{ flexGrow: 1, width: "100%" }}>{renderContent()}</Box>
       </Box>
     </Container>
   );

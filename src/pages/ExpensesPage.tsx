@@ -2,6 +2,7 @@ import { expensesService } from "@/api/services/expenseService";
 import ErrorState from "@/components/Error/ErrorState";
 import EmptyExpenses from "@/components/ExpensePage/ExpenseEmpty";
 import ExpenseForm from "@/components/ExpensePage/ExpenseForm";
+import ExpenseList from "@/components/ExpensePage/ExpenseList";
 import LoadingState from "@/components/Loading/LoadingState";
 import { useExpenses } from "@/hooks/useExpenses";
 import type { ExpenseFormValues } from "@/utils/expenseSchema";
@@ -19,6 +20,7 @@ export default function ExpensesPage() {
     if (isLoading) return <LoadingState />;
     if (error) return <ErrorState message={error} onRetry={refresh} />;
     if (expenses.length === 0) return <EmptyExpenses />;
+    return <ExpenseList expenses={expenses} />;
   };
 
   return (

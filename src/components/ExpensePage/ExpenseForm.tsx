@@ -1,6 +1,6 @@
 import { expenseSchema, type ExpenseFormValues } from "@/utils/expenseSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Stack, TextField } from "@mui/material";
+import { Alert, Button, Stack, TextField } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -14,6 +14,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
     control,
     handleSubmit,
     reset,
+    setError,
     formState: { errors },
   } = useForm<ExpenseFormValues>({
     resolver: zodResolver(expenseSchema),
@@ -21,8 +22,12 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
   });
 
   const onSubmit = (values: ExpenseFormValues) => {
-    onAdd(values);
-    reset();
+    try {
+      onAdd(values);
+      reset();
+    } catch {
+      setError("root", { message: "errors.saveFailed" });
+    }
   };
 
   return (
@@ -75,6 +80,9 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
             />
           )}
         />
+        {errors.root?.message && (
+          <Alert severity="error">{t(errors.root.message)}</Alert>
+        )}
         <Button type="submit" variant="contained">
           {t("form.add")}
         </Button>

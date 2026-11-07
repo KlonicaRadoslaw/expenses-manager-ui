@@ -1,5 +1,27 @@
 {
   "header": "Menedżer wydatków",
+  "nav": {
+    "dashboard": "Dashboard",
+    "expenses": "Wydatki",
+    "summary": "Podsumowanie"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "count": "Liczba wydatków: {{count}}"
+  },
+  "summary": {
+    "title": "Podsumowanie",
+    "total": "Suma wydatków: {{total}}"
+  },
+  "notFound": {
+    "title": "Nie znaleziono strony",
+    "back": "Wróć na stronę główną"
+  },
+  "status": {
+    "loading": "Ładowanie...",
+    "error": "Nie udało się pobrać danych",
+    "retry": "Spróbuj ponownie"
+  },
   "form": {
     "title": "Tytuł",
     "amount": "Kwota",
@@ -12,9 +34,10 @@
   },
   "errors": {
     "titleRequired": "Tytuł jest wymagany",
-    "titleMin": "Tytuł musi mieć przynajmniej 2 znaki",
+    "titleMin": "Tytuł musi mieć co najmniej 2 znaki",
     "amountRequired": "Kwota jest wymagana",
     "amountPositive": "Kwota musi być większa od zera",
-    "categoryRequired": "Kategoria jest wymagana"
+    "categoryRequired": "Kategoria jest wymagana",
+    "saveFailed": "Nie udało się zapisać wydatku"
   }
 }

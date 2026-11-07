@@ -1,20 +1,43 @@
 {
   "header": "Expense Manager",
+  "nav": {
+    "dashboard": "Dashboard",
+    "expenses": "Expenses",
+    "summary": "Summary"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "count": "Number of expenses: {{count}}"
+  },
+  "summary": {
+    "title": "Summary",
+    "total": "Total expenses: {{total}}"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to the home page"
+  },
+  "status": {
+    "loading": "Loading...",
+    "error": "Failed to load data",
+    "retry": "Try again"
+  },
   "form": {
     "title": "Title",
     "amount": "Amount",
     "category": "Category",
     "add": "Add expense",
-    "sum": "Sum"
+    "sum": "Total"
   },
   "list": {
     "empty": "No expenses yet. Add the first one!"
   },
   "errors": {
     "titleRequired": "Title is required",
-    "titleMin": "Title must contain at least 2 characters",
+    "titleMin": "Title must be at least 2 characters",
     "amountRequired": "Amount is required",
     "amountPositive": "Amount must be greater than zero",
-    "categoryRequired": "Category is required"
+    "categoryRequired": "Category is required",
+    "saveFailed": "Failed to save the expense"
   }
 }

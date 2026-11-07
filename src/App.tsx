@@ -3,6 +3,7 @@ import Layout from "@/components/Common/Layout";
 import DashboardPage from "@/pages/DashboardPage";
 import ExpensesPage from "@/pages/ExpensesPage";
 import SummaryPage from "@/pages/SummaryPage";
+import NotFoundPage from "@/pages/NotFoundPage";
 
 function App() {
   return (

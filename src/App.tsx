@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "@/components/Common/Layout";
 import DashboardPage from "@/pages/DashboardPage";
 import ExpensesPage from "@/pages/ExpensesPage";
+import SummaryPage from "@/pages/SummaryPage";
 
 function App() {
   return (

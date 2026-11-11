@@ -11,7 +11,7 @@ import { Box, Container } from "@mui/material";
 export default function ExpensesPage() {
   const { expenses, isLoading, error, refresh } = useExpenses();
 
-  const handleAdd = (values: ExpenseFormValues) => {
+  const handleAdd = async (values: ExpenseFormValues) => {
     expensesService.create(values);
     refresh();
   };

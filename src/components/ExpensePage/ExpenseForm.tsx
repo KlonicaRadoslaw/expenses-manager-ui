@@ -5,7 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 interface ExpenseFormProps {
-  onAdd: (values: ExpenseFormValues) => void;
+  onAdd: (values: ExpenseFormValues) => Promise<void>;
 }
 
 export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
@@ -21,9 +21,9 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
     defaultValues: { title: "", category: "" },
   });
 
-  const onSubmit = (values: ExpenseFormValues) => {
+  const onSubmit = async (values: ExpenseFormValues) => {
     try {
-      onAdd(values);
+      await onAdd(values);
       reset();
     } catch {
       setError("root", { message: "errors.saveFailed" });

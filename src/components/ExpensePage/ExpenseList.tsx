@@ -8,7 +8,6 @@ import {
   TableFooter,
   TableHead,
   TableRow,
-  Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -18,10 +17,6 @@ interface ExpenseListProps {
 
 export default function ExpenseList({ expenses }: ExpenseListProps) {
   const { t } = useTranslation();
-
-  if (expenses.length === 0) {
-    return <Typography color="text.secondary">{t("list.empty")}</Typography>;
-  }
 
   return (
     <TableContainer component={Paper} variant="outlined">

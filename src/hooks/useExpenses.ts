@@ -31,7 +31,7 @@ export function useExpenses() {
         setExpenses(result.data ?? []);
       })
       .catch((err: unknown) => {
-        if (!controller.signal.aborted) return;
+        if (controller.signal.aborted) return;
 
         setError(err instanceof Error ? err.message : "Nieoczekiwany błąd");
       })

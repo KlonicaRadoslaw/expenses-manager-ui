@@ -3,11 +3,11 @@ import { Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import ErrorState from "@/components/Error/ErrorState";
 import LoadingState from "@/components/Loading/LoadingState";
-import { useExpenses } from "@/hooks/useExpenses";
+import { useExpensesContext } from "@/hooks/useExpensesContext";
 
 export default function SummaryPage() {
   const { t } = useTranslation();
-  const { expenses, isLoading, error, refresh } = useExpenses();
+  const { expenses, isLoading, error, refresh } = useExpensesContext();
 
   const total = useMemo(
     () => expenses.reduce((sum, item) => sum + item.amount, 0),

@@ -4,15 +4,19 @@ import EmptyExpenses from "@/components/ExpensePage/ExpenseEmpty";
 import ExpenseForm from "@/components/ExpensePage/ExpenseForm";
 import ExpenseList from "@/components/ExpensePage/ExpenseList";
 import LoadingState from "@/components/Loading/LoadingState";
-import { useExpenses } from "@/hooks/useExpenses";
+import { useExpensesContext } from "@/hooks/useExpensesContext";
 import type { ExpenseFormValues } from "@/utils/expenseSchema";
 import { Box, Container } from "@mui/material";
 
 export default function ExpensesPage() {
-  const { expenses, isLoading, error, refresh } = useExpenses();
+  const { expenses, isLoading, error, refresh } = useExpensesContext();
 
   const handleAdd = async (values: ExpenseFormValues) => {
-    expensesService.create(values);
+    const result = await expensesService.create(values);
+    if (!result.success) {
+      throw new Error(result.message ?? `HTTP ${result.status}`);
+    }
+
     refresh();
   };
 

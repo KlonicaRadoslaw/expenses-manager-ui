@@ -1,4 +1,3 @@
-import { getErrorMessage } from "@/api/getErrorMessage";
 import { expensesService } from "@/api/services/expenseService";
 import type { Expense } from "@/utils/types";
 import { useCallback, useEffect, useState } from "react";
@@ -21,9 +20,20 @@ export function useExpenses() {
 
     expensesService
       .getAll(controller.signal)
-      .then(({ data }) => setExpenses(data))
+      .then((result) => {
+        if (controller.signal.aborted) return;
+
+        if (!result.success) {
+          setError(result.message ?? `HTTP ${result.status}`);
+          return;
+        }
+
+        setExpenses(result.data ?? []);
+      })
       .catch((err: unknown) => {
-        if (!controller.signal.aborted) setError(getErrorMessage(err));
+        if (!controller.signal.aborted) return;
+
+        setError(err instanceof Error ? err.message : "Nieoczekiwany błąd");
       })
       .finally(() => {
         if (!controller.signal.aborted) setIsLoading(false);

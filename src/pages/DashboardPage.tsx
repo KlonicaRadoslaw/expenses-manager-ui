@@ -1,12 +1,12 @@
 import ErrorState from "@/components/Error/ErrorState";
 import LoadingState from "@/components/Loading/LoadingState";
-import { useExpenses } from "@/hooks/useExpenses";
+import { useExpensesContext } from "@/hooks/useExpensesContext";
 import { Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 export default function DashboardPage() {
   const { t } = useTranslation();
-  const { expenses, isLoading, error, refresh } = useExpenses();
+  const { expenses, isLoading, error, refresh } = useExpensesContext();
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
